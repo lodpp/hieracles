@@ -4,17 +4,18 @@ module Hieracles
   module Puppetdb
     class Client
       include HTTParty
- 
+
       def initialize(options, version = 3)
-        @version = version
+        @version = options['version'] ||= version
         setup_if_ssl(options)
         options['port'] ||= 8080
         options['host'] ||= 'localhost'
         scheme = options['usessl'] ? "https://" : "http://"
-        self.class.base_uri(scheme + 
+        prefix = options['version'] >= 4 ? "/pdb/query" : ""
+        self.class.base_uri(scheme +
           options['host'] +
           ':' + options['port'].to_s +
-          '/v' + @version.to_s())
+          prefix + '/v' + @version.to_s())
       end
 
       def setup_if_ssl(options)

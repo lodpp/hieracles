@@ -1,6 +1,9 @@
 Hieracles Changelog
 =======================
 
+### 0.4.5 - 2023-10-23
+- Add support for puppetDB API v4
+
 ### 0.4.4 - 2023-01-06
 - fix lib/hieracles/node.rb params function to load YAML properly
   when moving to ruby3.2.0 / psych4 and the alias parsing behaviour
